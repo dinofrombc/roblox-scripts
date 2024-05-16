@@ -13,7 +13,9 @@ local player = game.Players.LocalPlayer
 
 local commands = {}
 local prefix = ";"
+
 local clip = false
+local god = false
 
 -- Functions
 
@@ -26,6 +28,10 @@ rs.RenderStepped:Connect(function()
 				end
 			end
 		end
+	end
+	
+	if god then
+		player.Character.Humanoid.Health = 100
 	end
 end)
 
@@ -56,14 +62,17 @@ commands.fling = function(...)
 	local velocity = Instance.new("BodyAngularVelocity")
 	velocity.MaxTorque = Vector3.new(0, 10^5, 0)
 	velocity.AngularVelocity = Vector3.new(0, 10^5, 0)
+	velocity.Name = "Fling"
 	velocity.Parent = player.Character.HumanoidRootPart
 	clip = true
 end
 
 commands.noanim = function(...)
-	if player.Character:FindFirstChild("Animate") then
-		player.Character.Animate:Destroy()
-	end
+	player.Character.Animate.Enabled = false
+end
+
+commands.reanim = function(...)
+	player.Character.Animate.Enabled = true
 end
 
 commands.unfling = function(...)
@@ -110,6 +119,14 @@ commands.tweengoto = function(args)
 		
 		player.Character.HumanoidRootPart.Anchored = false
 	end
+end
+
+commands.god = function(...)
+	god = not god
+end
+
+commands.ungod = function(...)
+	god = false
 end
 
 commands.tweengotopos = function(args)
