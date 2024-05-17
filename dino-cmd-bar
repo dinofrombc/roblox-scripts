@@ -171,6 +171,34 @@ commands.jp = function(args)
     player.Character.Humanoid.JumpPower = jump
 end
 
+commands.gotopart = function(args)
+	for _, part in pairs(workspace:GetDescendants()) do
+		if part.Name == args[1] then
+			player.Character.HumanoidRootPart.CFrame = part.CFrame
+			break
+		end
+	end
+end
+
+commands.tweengotopart = function(args)
+	local p
+
+	for _, part in pairs(workspace:GetDescendants()) do
+		if part.Name == args[1] then
+			p = part
+			break
+		end
+	end
+
+	player.Character.HumanoidRootPart.Anchored = true
+	
+	local tween = ts:Create(player.Character.HumanoidRootPart, TweenInfo.new(5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), { CFrame = p.CFrame })
+	tween:Play()
+	tween.Completed:Wait()
+	
+	player.Character.HumanoidRootPart.Anchored = false
+end
+
 -- UI
 
 AdminBar.Name = "AdminBar"
