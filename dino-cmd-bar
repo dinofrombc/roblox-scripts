@@ -57,6 +57,13 @@ commands.reset = function(...)
 	player.Character:BreakJoints()
 end
 
+commands.spin = function(args)
+	local velocity = Instance.new("BodyAngularVelocity")
+	velocity.MaxTorque = Vector3.new(0, 10^5, 0)
+	velocity.AngularVelocity = Vector3.new(0, 10^5, 0)
+	velocity.Name = "Fling"
+	velocity.Parent = player.Character.HumanoidRootPart
+end
 
 commands.fling = function(...)
 	local velocity = Instance.new("BodyAngularVelocity")
@@ -81,6 +88,12 @@ commands.unfling = function(...)
 	end
 	
 	clip = false
+end
+
+commands.unspin = function(...)
+	if player.Character.HumanoidRootPart:FindFirstChild("Fling") then
+		player.Character.HumanoidRootPart.Fling:Destroy()
+	end
 end
 
 commands.kill = function(args)
