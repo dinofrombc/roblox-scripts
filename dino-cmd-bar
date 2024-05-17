@@ -43,7 +43,9 @@ function FindPlayer(name)
 	end
 	
 	for _, plr in pairs(game.Players:GetPlayers()) do
-		if string.find(plr.Name, lowername) or string.find(plr.DisplayName, lowername) then
+		local lowerplrname = plr.Name:lower()
+		local lowerplrdisplayname = plr.DisplayName:lower()
+		if string.find(lowerplrname, lowername) or string.find(lowerplrdisplayname, lowername) then
 			return plr
 		end
 	end
@@ -116,6 +118,30 @@ commands.kill = function(args)
 		clip = false
 		player.Character.HumanoidRootPart.CFrame = currentpos
 	end
+end
+
+commands.dex = function(...)
+	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))()
+end
+
+commands.unlockworkspace = function(...)
+	for _, part in pairs(workspace:GetDescendants()) do
+		if part:IsA("BasePart") then
+			part.Locked = false
+		end
+	end
+end
+
+commands.btools = function(...)
+	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()
+end
+
+commands.rejoin = function(...)
+	game:service'TeleportService':TeleportToPlaceInstance(game.PlaceId, game.JobId, player)
+end
+
+commands.serverhop = function(...)
+	game:service'TeleportService':Teleport(game.PlaceId, player)
 end
 
 commands.gotopos = function(args)
