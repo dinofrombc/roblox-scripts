@@ -161,6 +161,16 @@ commands.btools = function(...)
 	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()
 end
 
+commands.ws = function(args)
+    local speed = tonumber(args[1])
+    player.Character.Humanoid.WalkSpeed = speed
+end
+
+commands.jp = function(args)
+    local jump = tonumber(args[1])
+    player.Character.Humanoid.JumpPower = jump
+end
+
 -- UI
 
 AdminBar.Name = "AdminBar"
