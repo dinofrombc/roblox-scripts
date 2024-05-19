@@ -47,14 +47,6 @@ workspace.DescendantAdded:connect(function(child)
             highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
             highlight.FillColor = Color3.fromRGB(0, 0, 255)
         end
-
-        if child.Name == "Door" and child.Parent.Name == "FakeDoor" and esp["door"] then
-            local highlight = Instance.new("Highlight", child)
-            highlight.Name = "Chams"
-            highlight.Adornee = child
-            highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-            highlight.FillColor = Color3.fromRGB(255, 0, 0)
-        end
     end
 end)
 
